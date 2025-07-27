@@ -1,4 +1,4 @@
-![Header](./images/Header.png)
+![Header](./images/header.png)
 (Generated with [PixelPoSH](https://github.com/dabeastnet/PixelPoSH))
 # SolarPVE
 
