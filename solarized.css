@@ -1,0 +1,297 @@
+/* --------------------------------------------------------------------
+   Solarized theme for Proxmox VE Web UI – v1.0
+   Author: Dieter Beckers (Jul 2025)
+   Original gitrepo: https://github.com/dabeastnet/SolarPVE
+   Reference palette: https://ethanschoonover.com/solarized/
+   --------------------------------------------------------------------
+   HOW IT WORKS
+   ------------
+   • Proxmox's light UI = body WITHOUT the class `proxmox-theme-dark`
+   • Proxmox's dark UI  = body WITH    the class `proxmox-theme-dark`
+   We therefore map:
+       - Light  → Solarized Light
+       - Dark   → Solarized Dark
+
+   • The file only contains *overrides* – it is safe to load AFTER the
+     stock Proxmox CSS files.
+   • Uses CSS variables for the palette so you can tweak easily.
+   • Tested on PVE 8.x (ExtJS 6.8) in Chromium & Firefox.
+
+   --------------------------------------------------------------------
+   PALETTE (CSS custom properties)
+   --------------------------------------------------------------------*/
+:root {
+  /* Base */
+  --base03: #002b36;
+  --base02: #073642;
+  --base01: #586e75;
+  --base00: #657b83;
+  --base0 : #839496;
+  --base1 : #93a1a1;
+  --base2 : #eee8d5;
+  --base3 : #fdf6e3;
+  /* Accents */
+  --yellow : #b58900;
+  --orange : #cb4b16;
+  --red    : #dc322f;
+  --magenta: #d33682;
+  --violet : #6c71c4;
+  --blue   : #268bd2;
+  --cyan   : #2aa198;
+  --green  : #859900;
+}
+
+/* --------------------------------------------------------------------
+   SOLARIZED LIGHT  (default – when the dark‑theme class is **absent**)
+   --------------------------------------------------------------------*/
+body:not(.proxmox-theme-dark) {
+  background-color: var(--base3) !important;
+  color: var(--base00) !important;
+  /* font smoothing */
+  -webkit-font-smoothing: antialiased;
+}
+
+
+
+
+body:not(.proxmox-theme-dark) .x-panel-body,
+body:not(.proxmox-theme-dark) .x-panel,
+body:not(.proxmox-theme-dark) .x-window-body,
+body:not(.proxmox-theme-dark) .x-grid-body {
+  background-color: var(--base3) !important;
+  color: var(--base00) !important;
+  border-color: var(--base1) !important;
+}
+
+/* Toolbar / header */
+body:not(.proxmox-theme-dark) .x-toolbar,
+body:not(.proxmox-theme-dark) .x-tab-bar,
+body:not(.proxmox-theme-dark) .x-panel-header,
+body:not(.proxmox-theme-dark) .x-header,
+body:not(.proxmox-theme-dark) .x-window-header{
+  background-color: var(--base2) !important;
+  border-color: var(--base1) !important;
+}
+
+/*Text*/
+body:not(.proxmox-theme-dark) .x-panel-header-title,
+body:not(.proxmox-theme-dark) .x-window-header-title-default{
+    color: var(--base00) !important;
+}
+
+
+/*Tabs*/
+body:not(.proxmox-theme-dark) .x-tab-active,
+body:not(.proxmox-theme-dark) .x-tab-default, 
+body:not(.proxmox-theme-dark) .x-tab{
+  background-color: var(--base2) !important;
+  border-color: var(--base1) !important;
+  color: var(--base00) !important;
+}
+
+body:not(.proxmox-theme-dark) .x-tab.x-tab-active.x-tab-default .x-tab-inner-default{
+  background-color: var(--base2) !important;
+  border-color: var(--base1) !important;
+  color: var(--base00) !important;
+}
+
+
+
+/* Buttons and icons */
+body:not(.proxmox-theme-dark) .x-btn-default-toolbar-small, 
+body:not(.proxmox-theme-dark) .x-tool-tool-el,
+body:not(.proxmox-theme-dark) .x-tool-img,
+body:not(.proxmox-theme-dark) .x-tool-after-title,
+body:not(.proxmox-theme-dark) .x-tool,
+body:not(.proxmox-theme-dark) .x-btn,
+body:not(.proxmox-theme-dark) .x-btn-inner,
+body:not(.proxmox-theme-dark) .x-title-icon-default,
+body:not(.proxmox-theme-dark) .x-btn-icon-el-default-small,
+body:not(.proxmox-theme-dark) .x-btn-inner-default-small,
+body:not(.proxmox-theme-dark) .x-tool-default {
+  background-color: var(--base2) !important;
+  border-color: var(--base1) !important;
+  color: var(--base00) !important;
+}
+body:not(.proxmox-theme-dark) .x-btn-default-toolbar-small:hover {
+  background-color: var(--base1) !important;
+  color: var(--base03) !important;
+}
+
+/* Status colours */
+body:not(.proxmox-theme-dark) .x-progress.critical .x-progress-bar   { background: var(--red)    !important; }
+body:not(.proxmox-theme-dark) .x-progress.warning  .x-progress-bar   { background: var(--yellow) !important; }
+body:not(.proxmox-theme-dark) .x-tree-icon-custom.running:after       { color: var(--green)  !important; }
+body:not(.proxmox-theme-dark) .x-tree-icon-custom.error:after         { color: var(--red)    !important; }
+
+/* Tree / navigation */
+body:not(.proxmox-theme-dark) .x-treelist-pve-nav {
+  background-color: var(--base3) !important;
+}
+body:not(.proxmox-theme-dark) .x-treelist-item-icon,
+body:not(.proxmox-theme-dark) .x-treelist-item-text {
+  color: var(--base02) !important;
+}
+body:not(.proxmox-theme-dark) .x-treelist-row-over * {
+  color: var(--blue) !important;
+}
+
+/* Tables */
+body:not(.proxmox-theme-dark) .x-grid-item {
+  background-color: var(--base3) !important;
+  color: var(--base00) !important;
+}
+body:not(.proxmox-theme-dark) .x-grid-item-over {
+  background-color: var(--base2) !important;
+}
+
+/* Masks / dialogs */
+body:not(.proxmox-theme-dark) .x-mask-msg {
+  background-color: var(--base2) !important;
+  border-color: var(--base1) !important;
+  color: var(--base00) !important;
+}
+
+/* Borders, text-selection, etc. */
+body:not(.proxmox-theme-dark) ::selection {
+  background: var(--violet);
+  color: var(--base3);
+}
+
+/* --------------------------------------------------------------------
+   SOLARIZED DARK  (when the dark‑theme class is **present**)
+   --------------------------------------------------------------------*/
+body.proxmox-theme-dark {
+  background-color: var(--base03) !important;
+  color: var(--base0)   !important;
+}
+
+/* Panels and other */
+body.proxmox-theme-dark .x-panel-body,
+body.proxmox-theme-dark .x-panel,
+body.proxmox-theme-dark .x-grid-item,
+body.proxmox-theme-dark .x-splitter,
+body.proxmox-theme-dark .x-window-body,
+body.proxmox-theme-dark .x-grid-body {
+  background-color: var(--base03) !important;
+  color:            var(--base0)  !important;
+  border-color:     var(--base01) !important;
+}
+
+/* Toolbar / header */
+body.proxmox-theme-dark .x-toolbar,
+body.proxmox-theme-dark .x-tab-bar,
+body.proxmox-theme-dark .x-panel-header,
+body.proxmox-theme-dark .x-header,
+body.proxmox-theme-dark .x-window-header {
+  background-color: var(--base02) !important;
+  border-color:     var(--base01) !important;
+}
+
+/* Text in headers */
+body.proxmox-theme-dark .x-panel-header-title,
+body.proxmox-theme-dark .x-window-header-title-default {
+  color: var(--base0) !important;
+}
+
+
+/* Tabs */
+body.proxmox-theme-dark .x-tab-active,
+body.proxmox-theme-dark .x-tab-default,
+body.proxmox-theme-dark .x-tab {
+  background-color: var(--base02) !important;
+  border-color:     var(--base01) !important;
+  color:            var(--base0)  !important;
+}
+body.proxmox-theme-dark .x-tab.x-tab-active.x-tab-default .x-tab-inner-default {
+  background-color: var(--base02) !important;
+  border-color:     var(--base01) !important;
+  color:            var(--base0)  !important;
+}
+
+/* Buttons and icons */
+body.proxmox-theme-dark .x-btn-default-toolbar-small,
+body.proxmox-theme-dark .x-tool-tool-el,
+body.proxmox-theme-dark .x-tool-img,
+body.proxmox-theme-dark .x-tool-after-title,
+body.proxmox-theme-dark .x-tool,
+body.proxmox-theme-dark .x-toolbar,
+body.proxmox-theme-dark .x-btn,
+body.proxmox-theme-dark .x-btn-inner,
+body.proxmox-theme-dark .x-btn-icon-el,
+body.proxmox-theme-dark .x-title-icon-default,
+body.proxmox-theme-dark .x-btn-icon-el-default-small,
+body.proxmox-theme-dark .x-btn-inner-default-small,
+body.proxmox-theme-dark .x-tool-default {
+  background-color: var(--base02) !important;
+  border-color:     var(--base01) !important;
+  color:            var(--base0)  !important;
+}
+body.proxmox-theme-dark .x-btn-default-toolbar-small:hover {
+  background-color: var(--base03) !important;
+  color:            var(--base1)  !important;
+}
+
+/* Status colours */
+body.proxmox-theme-dark .x-progress.critical .x-progress-bar   { background: var(--red)    !important; }
+body.proxmox-theme-dark .x-progress.warning  .x-progress-bar   { background: var(--yellow) !important; }
+body.proxmox-theme-dark .x-tree-icon-custom.running:after       { color: var(--green)  !important; }
+body.proxmox-theme-dark .x-tree-icon-custom.error:after         { color: var(--red)    !important; }
+
+/* Tree / navigation */
+body.proxmox-theme-dark .x-treelist-pve-nav {
+  background-color: var(--base02) !important;
+}
+body.proxmox-theme-dark .x-treelist-item {
+  background-color: var(--base03) !important;
+}
+body.proxmox-theme-dark .x-treelist-item-icon,
+body.proxmox-theme-dark .x-treelist-item-text {
+  color: var(--base3) !important;
+}
+body.proxmox-theme-dark .x-treelist-row-over * {
+  color: var(--orange) !important;
+}
+
+/* Tables */
+body.proxmox-theme-dark .x-grid-item {
+  background-color: var(--base03) !important;
+  color:            var(--base0)  !important;
+}
+body.proxmox-theme-dark .x-grid-item-over {
+  background-color: var(--base02) !important;
+}
+
+
+body.proxmox-theme-dark .x-treelist-item-selected,
+body.proxmox-theme-dark .x-grid-item-selected,
+body.proxmox-theme-dark .x-treelist-item-selected>.x-treelist-row
+ {
+  background-color: var(--base02) !important;
+}
+
+
+/* Masks / dialogs */
+body.proxmox-theme-dark .x-mask-msg {
+  background-color: var(--base02) !important;
+  border-color:     var(--base01) !important;
+  color:            var(--base0)  !important;
+}
+
+/* --------------------------------------------------------------------
+   GENERIC OVERRIDES (apply to both light & dark)
+   --------------------------------------------------------------------*/
+.x-grid-filters-filtered-column .x-column-header-text:after { color: var(--violet) !important; }
+.x-tree-icon-custom.pending:after,   .x-grid-icon-custom.pending:after   { color: var(--yellow) !important; }
+.x-tree-icon-custom.online:after,    .x-grid-icon-custom.online:after    { color: var(--green)  !important; }
+.x-tree-icon-custom.paused:after,    .x-grid-icon-custom.paused:after    { color: var(--yellow) !important; }
+.x-tree-icon-custom.suspended:after, .x-grid-icon-custom.suspended:after { color: var(--yellow) !important; }
+.x-tree-icon-custom.unknown:after,   .x-grid-icon-custom.unknown:after   { color: var(--base01)!important; }
+
+/* Borders, text-selection, etc. */
+body.proxmox-theme-dark ::selection {
+  background: var(--orange);
+  color: var(--base3);
+}
+
+/* End of file */
