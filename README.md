@@ -87,10 +87,8 @@ and add *before* the existing `</head>` the following snippet:
 1. **Add** your custom CSS:
 
    ```bash
-   # Change directory to the ansible subfolder first
    # Copy your tailored Solarized stylesheet into the files/ directory
-   
-   cp /path/to/solarized.css files/solarized.css
+   cp ./solarized.css ./ansible/playbooks/files
    ```
 
 2. **Run** the playbook against your Proxmox inventory:
