@@ -26,6 +26,8 @@ Darkmode:
 
 ## Installation
 
+### Manual installation
+
 1. **Copy the CSS**  
    Place `solarized.css` into your Proxmox server’s static‐assets folder.  
    By default this is:  
@@ -69,6 +71,53 @@ and add *before* the existing `</head>` the following snippet:
    ```bash
    systemctl restart pveproxy
    ```
+
+### Ansible playbook (auto installer)
+> See the ansible subfolder
+
+#### 🛠️ Prerequisites
+
+* **Ansible 2.9+** installed on your control machine
+* SSH access (with `become`/sudo rights) to one or more Proxmox hosts
+* A copy of your `solarized.css` in `files/solarized.css`
+
+
+#### ⚙️ Usage
+
+1. **Add** your custom CSS:
+
+   ```bash
+   # Change directory to the ansible subfolder first
+   # Copy your tailored Solarized stylesheet into the files/ directory
+   
+   cp /path/to/solarized.css files/solarized.css
+   ```
+
+2. **Run** the playbook against your Proxmox inventory:
+
+   ```bash
+   ansible-playbook -i hosts solarized-theme.yml --limit proxmox
+   ```
+
+   > This will:
+   >
+   > * Copy `solarized.css` to `/usr/share/pve-manager/images/solarized.css`
+   > * Patch Proxmox’s `index.html.tpl` to include light & dark-mode logic
+   > * Restart `pveproxy` to serve your new theme
+
+---
+
+#### 🔧 Configuration
+
+* **Playbook file**: `solarized-theme.yml`
+* **Key variables** (override via `-e` or `group_vars` if desired):
+
+  | Variable   | Default path                                      |
+  | ---------- | ------------------------------------------------- |
+  | `css_src`  | `files/solarized.css`                             |
+  | `css_dest` | `/usr/share/pve-manager/images/solarized.css`     |
+  | `tpl_path` | `/usr/share/pve-manager/templates/index.html.tpl` |
+
 
 ---
 

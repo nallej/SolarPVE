@@ -1,0 +1,57 @@
+---
+- name: Install Solarized Proxmox theme
+# Playbook: solarized-theme.yml
+# Author: Dieter Beckers 
+# Github: https://github.com/dabeastnet/SolarPVE
+# Description: Install Solarized Proxmox theme (light + dark-mode detection)
+# License: CC BY-NC 4.0.
+#
+#Change this to match your inventory grouping
+  hosts: pve
+  become: yes
+  vars:
+    css_src: files/solarized.css
+    css_dest: /usr/share/pve-manager/images/solarized.css
+    tpl_path: /usr/share/pve-manager/index.html.tpl
+  tasks:
+
+    - name: Ensure Proxmox images directory exists
+      file:
+        path: "{{ css_dest | dirname }}"
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Copy Solarized CSS into place
+      copy:
+        src: "{{ css_src }}"
+        dest: "{{ css_dest }}"
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Inject dark-mode detector + Solarized link into index.html.tpl
+      blockinfile:
+        path: "{{ tpl_path }}"
+        backup: yes
+        marker: "<!-- {mark} solarized theme -->"
+        insertbefore: "</head>"
+        block: |
+          <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              // Look for the Proxmox dark-theme stylesheet
+              const darkLink = document.querySelector(
+                'link[href*="theme-proxmox-dark.css"]'
+              );
+              if (darkLink) {
+                document.body.classList.add('proxmox-theme-dark');
+              }
+            });
+          </script>
+          <link rel="stylesheet" href="/pve2/images/solarized.css">
+
+    - name: Restart pveproxy so new CSS is served
+      service:
+        name: pveproxy
+        state: restarted
