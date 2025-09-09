@@ -55,19 +55,19 @@
     Ext.onReady(function() { Ext.create('PVE.StdWorkspace');});
     </script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Look for the Proxmox dark-theme stylesheet
-    const darkLink = document.querySelector(
-      'link[href*="theme-proxmox-dark.css"]'
-    );
-    if (darkLink) {
-      document.body.classList.add('proxmox-theme-dark');
-    }
-  });
-</script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Look for the Proxmox dark-theme stylesheet
+        const darkLink = document.querySelector(
+          'link[href*="theme-proxmox-dark.css"]'
+        );
+        if (darkLink) {
+          document.body.classList.add('proxmox-theme-dark');
+        }
+      });
+    </script>
 
-<link rel="stylesheet" href="/pve2/images/solarized.css">
+    <link rel="stylesheet" href="/pve2/images/solarized.css">
 
   </head>
   <body>
