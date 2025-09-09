@@ -33,7 +33,7 @@ Darkmode:
    By default this is:  
 ```
 
-/usr/share/pve-manager/images/solarized.css
+/usr/share/pve-manager/css/solarized.css
 
 ```
 
