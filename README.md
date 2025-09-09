@@ -47,19 +47,19 @@ Edit (or better: override) Proxmox’s `index.html.tpl`—usually at:
 and add *before* the existing `</head>` the following snippet:
 
 ```html
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Detect if Proxmox’s dark stylesheet is loaded
-    const darkLink = document.querySelector(
-      'link[href*="theme-proxmox-dark.css"]'
-    );
-    if (darkLink) {
-      document.body.classList.add('proxmox-theme-dark');
-    }
-  });
-</script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Detect if Proxmox’s dark stylesheet is loaded
+        const darkLink = document.querySelector(
+          'link[href*="theme-proxmox-dark.css"]'
+        );
+        if (darkLink) {
+          document.body.classList.add('proxmox-theme-dark');
+        }
+      });
+    </script>
 
-<link rel="stylesheet" href="/pve2/images/solarized.css">
+    <link rel="stylesheet" href="/pve2/css/solarized.css">
 ````
 (An example index.html.tpl ships in this repo, see the `Example` folder)
 
